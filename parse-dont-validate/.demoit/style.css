@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;800;900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;800;900&display=swap');
 
 html,
 body,
@@ -12,7 +12,7 @@ body,
 	--color-main: rgb(244, 66, 116);
 	--color-main-dark: rgb(131, 34, 61);
 
-	--font-family: "Hanken Grotesk", sans-serif;
+	--font-family: 'Hanken Grotesk', sans-serif;
 }
 
 html {
@@ -187,7 +187,7 @@ em {
 	max-height: 100%;
 }
 
-.mermaid[data-processed="true"] {
+.mermaid[data-processed='true'] {
 	visibility: visible;
 }
 

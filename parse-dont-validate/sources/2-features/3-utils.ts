@@ -14,9 +14,15 @@ type TypeOfsMap = {
 	function: Function;
 };
 
+export class MyZodError extends Error {
+	constructor(received: unknown, expected: unknown, path: Path) {
+		super(`Expected ${expected} at \`.${path.length === 0 ? '' : path.join('.')}\`. Received \`${received}\``);
+	}
+}
+
 export function assert<T extends TypeOfs>(value: unknown, type: T, path: Path): asserts value is TypeOfsMap[T] {
 	if (typeof value !== type) {
-		throw new Error(`Expected a ${type} at \`.${path.length === 0 ? '' : path.join('.')}\`. Received \`${value}\``);
+		throw new MyZodError(value, type, path);
 	}
 }
 
