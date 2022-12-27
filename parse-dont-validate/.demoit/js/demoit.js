@@ -1,11 +1,11 @@
 class BaseHTMLElement extends HTMLElement {
 	constructor() {
 		super();
-		this.attachShadow({ mode: "open" });
+		this.attachShadow({mode: 'open'});
 	}
 
 	render() {
-		return "";
+		return '';
 	}
 
 	connectedCallback() {
@@ -24,99 +24,110 @@ class BaseHTMLElement extends HTMLElement {
 class FakeWindow extends BaseHTMLElement {
 	static get styles() {
 		return `
-        #main {
-            font-size: 18px;
-            padding: 2.1em 0 0 0;
-            border-radius: 0.4em;
-            background: #ddd;
-            display: inline-block;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 0.25em 0.9em -0.1em rgba(0,0,0,.2);
-            width: 100%;
-            height: calc(100% - 40px);
-            background-color: white;
-        }
+            #main {
+                font-size: 18px;
+                padding: 2.1em 0 0 0;
+                border-radius: 0.4em;
+                background: #ddd;
+                display: inline-block;
+                position: relative;
+                overflow: hidden;
+                box-shadow: 0 0.25em 0.9em -0.1em rgba(0,0,0,.2);
+                width: 100%;
+                height: calc(100% - 40px);
+                background-color: white;
+                transition: all 1s;
+            }
 
-        #bar {
-            display: block;
-            box-sizing: border-box;
-            height: 2.1em;
-            position: absolute;
-            top: 0;
-            padding: 0.3em;
-            width: 100%;
-            background: linear-gradient(to bottom, #edeaed 0%, #dddfdd 100%);
-            border-bottom: 2px solid #cbcbcb;
-            border-radius: 0.4em 0.4em 0 0;
-        }
+            #bar {
+                display: block;
+                box-sizing: border-box;
+                height: 2.1em;
+                position: absolute;
+                top: 0;
+                padding: 0.3em;
+                width: 100%;
+                background: #ffffff;
+                color: #24292f;
+                border-bottom: 1px solid #d0d7de;
+                border-radius: 0.4em 0.4em 0 0;
+            }
 
-        #title {
-            font-size: 0.75em;
-            display: inline-block;
-            height: 1.6em;
-            width: calc(100% - 6em);
-            padding: 0.4em 0.4em 0 0.4em;
-            color: black;
-            text-align: left;
-            overflow: hidden;
-            white-space: nowrap;
-            font-family: sans-serif;
-        }
+            #bar.dark {
+                background: #000000;
+                color: #f6f8fa;
+                border-bottom: 1px solid #24292f;
+            }
 
-        i {
-            display: inline-block;
-            width: 13px;
-            height: 13px;
-            border-radius: 13px;
-            margin: 0.4em 3px;
-        }
+            #title {
+                font-size: 0.75em;
+                display: inline-block;
+                height: 1.6em;
+                width: calc(100% - 6em);
+                padding: 0.4em 0.4em 0 0.4em;
+                text-align: left;
+                overflow: hidden;
+                white-space: nowrap;
+                font-family: sans-serif;
+            }
 
-        i:hover {
-            filter: brightness(110%);
-        }
+            i {
+                display: inline-block;
+                width: 13px;
+                height: 13px;
+                border-radius: 13px;
+                margin: 0.4em 3px;
+            }
 
-        #red {background-color: rgb(255, 90, 82);}
-        #yellow {background-color: rgb(230, 192, 41);}
-        #green {background-color: rgb(82, 194, 43);}
+            i:hover {
+                filter: brightness(110%);
+            }
 
-        #main:not(:first-of-type) {
-            margin-top: 5px;
-        }
+            #red {background-color: rgb(255, 90, 82);}
+            #yellow {background-color: rgb(230, 192, 41);}
+            #green {background-color: rgb(82, 194, 43);}
 
-        .maximized {
-            position: absolute !important;
-            top: 1vw !important;
-            left: 1vw !important;
-            width: calc(100% - 2vw) !important;
-            height: calc(100% - 2vw) !important;
-            margin: 0 !important;
-            box-sizing: border-box !important;
-            z-index: 20 !important;
-        }`;
+            #main:not(:first-of-type) {
+                margin-top: 5px;
+            }
+
+            .maximized {
+                position: absolute !important;
+                top: 1vw !important;
+                left: 1vw !important;
+                width: calc(100% - 2vw) !important;
+                height: calc(100% - 2vw) !important;
+                margin: 0 !important;
+                box-sizing: border-box !important;
+                z-index: 20 !important;
+            }
+        `;
 	}
 
 	render() {
-		this.title = this.getAttribute("title") || "";
+		const isDark = this.getAttribute('theme') === 'dark';
+
+		this.title = this.getAttribute('title') || '';
 
 		return `
-        <div id="main">
-            <div id="bar">
-                <i id="red"></i><i id="yellow"></i><i id="green"></i>
-                ${this.title ? `<span id="title">${this.title}</span>` : ""}
-                <slot name="bar"></slot>
+            <div id="main">
+                <div id="bar" class="${isDark ? 'dark' : ''}">
+                    <i id="red"></i><i id="yellow"></i><i id="green"></i>
+                    ${this.title ? `<span id="title">${this.title}</span>` : '<span id="title" />'}
+                    <slot name="bar" />
+                </div>
+                <slot />
             </div>
-            <slot></slot>
-        </div>`;
+        `;
 	}
 
 	connectedCallback() {
 		super.connectedCallback();
-		this.$("#green").addEventListener("click", () => this.$("#main").classList.toggle("maximized"));
+		this.$('#green').addEventListener('click', () => this.$('#main').classList.toggle('maximized'));
 	}
 }
 
-customElements.define("fake-window", FakeWindow);
+customElements.define('fake-window', FakeWindow);
 
 class SourceCode extends BaseHTMLElement {
 	static get styles() {
@@ -190,46 +201,49 @@ class SourceCode extends BaseHTMLElement {
 	}
 
 	render() {
-		this.folder = this.getAttribute("folder");
-		this.code_style = this.getAttribute("code_style");
+		this.folder = this.getAttribute('folder');
+		this.code_style = this.getAttribute('code_style');
+
 		if (this.code_style === null) {
-			this.code_style = "vs";
+			this.code_style = 'vs';
 		}
-		this.hash = this.getAttribute("hash");
+
+		this.hash = this.getAttribute('hash');
+
 		if (this.hash === null) {
-			this.hash = "";
+			this.hash = '';
 		}
-		this.files = this.getAttribute("files")
-			.split(" ")
-			.filter(n => n.trim() !== "");
-		this.startLines = this.getAttribute("start-lines").split(";");
-		this.endLines = this.getAttribute("end-lines").split(";");
+
+		this.files = this.getAttribute('files')
+			.split(' ')
+			.filter(n => n.trim() !== '');
+
+		this.startLines = this.getAttribute('start-lines').split(';');
+		this.endLines = this.getAttribute('end-lines').split(';');
+
+		const tabs = this.files
+			.map((file, i) => `<a class="${i == 0 ? 'selected' : ''}" href="#">${file}<span class="close">x</span></a>`)
+			.join('');
 
 		return `
-        <fake-window title="code ~ ${this.folder}">
-            <div id="tabs">
-            ${this.files
-							.map(
-								(file, i) =>
-									`<a class="${
-										i == 0 ? "selected" : ""
-									}" href="#">${file}<span class="close">x</span></a>`
-							)
-							.join("")}
-            </div>
-            <div id="container">
-                <div id="source"></div>
-            </div>
-        </fake-window>`;
+            <fake-window title="@alistaiir • ${this.folder}">
+                <div id="tabs">
+                    ${tabs}
+                </div>
+                <div id="container">
+                    <div id="source"></div>
+                </div>
+            </fake-window>
+        `;
 	}
 
 	connectedCallback() {
 		super.connectedCallback();
 		this.showCurrentTab(0);
-		this.$$("a").forEach((link, index) =>
-			link.addEventListener("click", () => {
+		this.$$('a').forEach((link, index) =>
+			link.addEventListener('click', () => {
 				this.showCurrentTab(index);
-			})
+			}),
 		);
 	}
 
@@ -240,13 +254,13 @@ class SourceCode extends BaseHTMLElement {
 		const url = `/sourceCode/${this.folder}/${file}?hash=${this.hash}&style=${this.code_style}&startLine=${startLines}&endLine=${endLines}`;
 
 		const response = await fetch(url);
-		this.$("#source").innerHTML = await response.text();
+		this.$('#source').innerHTML = await response.text();
 
-		this.$$("a").forEach((link, index) => link.classList.toggle("selected", index == current));
+		this.$$('a').forEach((link, index) => link.classList.toggle('selected', index == current));
 	}
 }
 
-customElements.define("source-code", SourceCode);
+customElements.define('source-code', SourceCode);
 
 class WebBrowser extends BaseHTMLElement {
 	static get styles() {
@@ -289,7 +303,7 @@ class WebBrowser extends BaseHTMLElement {
 	}
 
 	render() {
-		this.src = this.getAttribute("src");
+		this.src = this.getAttribute('src');
 
 		// prettier-ignore
 		return `
@@ -308,10 +322,10 @@ class WebBrowser extends BaseHTMLElement {
 	connectedCallback() {
 		super.connectedCallback();
 
-		this.$("#refresh").addEventListener("click", () => this.reset());
-		this.$("#url").addEventListener("keydown", event => {
+		this.$('#refresh').addEventListener('click', () => this.reset());
+		this.$('#url').addEventListener('keydown', event => {
 			event.stopPropagation();
-			if (event.key === "Enter") {
+			if (event.key === 'Enter') {
 				this.reset();
 			}
 		});
@@ -329,8 +343,8 @@ class WebBrowser extends BaseHTMLElement {
 	}
 
 	async refreshFrame() {
-		const url = this.$("#url").value;
-		const response = await fetch(`/ping?url=${url}`, { method: "HEAD" });
+		const url = this.$('#url').value;
+		const response = await fetch(`/ping?url=${url}`, {method: 'HEAD'});
 
 		const status = response.status;
 
@@ -342,15 +356,15 @@ class WebBrowser extends BaseHTMLElement {
 
 		if (status < 400) {
 			window.clearInterval(this.timer);
-			this.$("#site").src = url;
+			this.$('#site').src = url;
 			return;
 		}
 
-		this.$("#site").src = url + `?rnd=${Math.random(1)}`;
+		this.$('#site').src = url + `?rnd=${Math.random(1)}`;
 	}
 }
 
-customElements.define("web-browser", WebBrowser);
+customElements.define('web-browser', WebBrowser);
 
 class WebTerm extends BaseHTMLElement {
 	static get styles() {
@@ -373,15 +387,15 @@ class WebTerm extends BaseHTMLElement {
                 width: calc(100% + 1px);
                 height: calc(100% + 1px);
                 border: none;
-                background-color: rgb(10,39,50);
+                background-color: #000000;
             }
         `;
 	}
 
 	render() {
-		this.path = this.getAttribute("path");
+		this.path = this.getAttribute('path');
 		return `
-            <fake-window title="bash ~ ${this.path}">
+            <fake-window theme="dark">
                 <iframe scrolling="no" src="/shell/${this.path}"></iframe>
             </fake-window>
         `;
@@ -392,7 +406,7 @@ class WebTerm extends BaseHTMLElement {
 	}
 }
 
-customElements.define("web-term", WebTerm);
+customElements.define('web-term', WebTerm);
 
 class SplitView extends BaseHTMLElement {
 	static get styles() {
@@ -411,7 +425,7 @@ class SplitView extends BaseHTMLElement {
 	}
 }
 
-customElements.define("split-view", SplitView);
+customElements.define('split-view', SplitView);
 
 class NavArrows extends BaseHTMLElement {
 	static get styles() {
@@ -448,31 +462,27 @@ class NavArrows extends BaseHTMLElement {
 	}
 
 	render() {
-		this.previous = this.getAttribute("previous");
-		this.next = this.getAttribute("next");
+		this.previous = this.getAttribute('previous');
+		this.next = this.getAttribute('next');
 
 		return `
-        <a class="${this.previous ? "" : "disabled"}" onclick="window.location.href='${
-			this.previous
-		}';">&lt;</a>
-        <a class="${this.next ? "" : "disabled"}" onclick="window.location.href='${
-			this.next
-		}';">&gt;</a>`;
+        <a class="${this.previous ? '' : 'disabled'}" onclick="window.location.href='${this.previous}';">&lt;</a>
+        <a class="${this.next ? '' : 'disabled'}" onclick="window.location.href='${this.next}';">&gt;</a>`;
 	}
 
 	connectedCallback() {
 		super.connectedCallback();
 
 		// Capture keydown events, and change slides accordingly
-		document.addEventListener("keydown", event => {
+		document.addEventListener('keydown', event => {
 			switch (event.key) {
-				case "ArrowRight":
-				case "PageDown":
-				case " ":
+				case 'ArrowRight':
+				case 'PageDown':
+				case ' ':
 					window.location.href = this.next;
 					break;
-				case "ArrowLeft":
-				case "PageUp":
+				case 'ArrowLeft':
+				case 'PageUp':
 					window.location.href = this.previous;
 					break;
 				default:
@@ -482,11 +492,11 @@ class NavArrows extends BaseHTMLElement {
 	}
 }
 
-customElements.define("nav-arrows", NavArrows);
+customElements.define('nav-arrows', NavArrows);
 
 // Tag <speaker-notes> renders nothing on the Main presentation screen.
 // Its content is dynamically extracted and sent to the Speaker notes window.
-customElements.define("speaker-notes", BaseHTMLElement);
+customElements.define('speaker-notes', BaseHTMLElement);
 
 // Communication between Main presentation window and Speaker notes window.
 // On page load, emit current state.
@@ -494,14 +504,14 @@ customElements.define("speaker-notes", BaseHTMLElement);
 // When Speaker notes window forwards navigation, navigate.
 // Messages must be sent and received even when a slide doesn't have speaker notes,
 // in order to keep the two windows in sync.
-const channel = new BroadcastChannel("demoit_nav");
+const channel = new BroadcastChannel('demoit_nav');
 function emitCurrentState() {
-	let notes = "";
-	const notesDiv = document.getElementsByTagName("speaker-notes");
+	let notes = '';
+	const notesDiv = document.getElementsByTagName('speaker-notes');
 	if (notesDiv && notesDiv[0]) notes = notesDiv[0].innerHTML;
 
-	let title = "";
-	const h1s = document.getElementsByTagName("h1");
+	let title = '';
+	const h1s = document.getElementsByTagName('h1');
 	if (h1s && h1s[0]) title = h1s[0].innerHTML;
 
 	channel.postMessage({
@@ -513,16 +523,16 @@ function emitCurrentState() {
 }
 emitCurrentState();
 channel.onmessage = function (e) {
-	if (e.data === "ask") {
+	if (e.data === 'ask') {
 		emitCurrentState();
 		return;
 	}
 
-	if (e.data.hasOwnProperty("destinationSlideId")) {
+	if (e.data.hasOwnProperty('destinationSlideId')) {
 		// The Speaker notes window received a slide change event, and forwards it to
 		// the Main presentation window.
 		// The Main presentation window advances to the new current slide.
-		window.location.href = "/" + e.data.destinationSlideId;
+		window.location.href = '/' + e.data.destinationSlideId;
 	}
 };
 
@@ -538,20 +548,20 @@ class VSCode extends BaseHTMLElement {
 	}
 
 	render() {
-		this.path = this.getAttribute("path");
+		this.path = this.getAttribute('path');
 
 		return `
-            <fake-window title="code ~ ${this.path}">
+            <fake-window title="Visual Studio Code • @alistaiir">
                 <iframe id="site" class="site" src="/beta/vscode/${this.path}"></iframe>
             </fake-window>
         `;
 	}
 }
 
-customElements.define("vs-code", VSCode);
+customElements.define('vs-code', VSCode);
 
 customElements.define(
-	"editor-view",
+	'editor-view',
 	class EditorView extends BaseHTMLElement {
 		static get styles() {
 			return `
@@ -578,7 +588,7 @@ customElements.define(
 		}
 
 		render() {
-			const path = this.getAttribute("path");
+			const path = this.getAttribute('path');
 			return `
                 <div>
                     <vs-code path="${path}"></vs-code>
@@ -586,9 +596,9 @@ customElements.define(
                 </div>
             `;
 		}
-	}
+	},
 );
 
 // Diagrams
-import mermaid from "https://unpkg.com/mermaid@9.2.2/dist/mermaid.esm.min.mjs";
-mermaid.initialize({ startOnLoad: true });
+import mermaid from 'https://unpkg.com/mermaid@9.2.2/dist/mermaid.esm.min.mjs';
+mermaid.initialize({startOnLoad: true});
