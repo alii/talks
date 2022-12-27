@@ -2,7 +2,6 @@
 	"name": "parse-dont-validate",
 	"license": "MIT",
 	"devDependencies": {
-		"prettier": "^2.8.1",
 		"typescript": "^5.0.0-dev.20221226"
 	}
 }

@@ -4,7 +4,6 @@ export function string(): Parser<string> {
 	return {
 		parse: value => {
 			if (typeof value !== 'string') {
-				// piss ourselves
 				throw new Error('Expected string');
 			}
 

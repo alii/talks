@@ -7,5 +7,13 @@
 	"arrowParens": "avoid",
 	"bracketSpacing": false,
 	"useTabs": true,
-	"quoteProps": "consistent"
+	"quoteProps": "consistent",
+	"overrides": [
+		{
+			"files": "*.html",
+			"options": {
+				"printWidth": 1000
+			}
+		}
+	]
 }
