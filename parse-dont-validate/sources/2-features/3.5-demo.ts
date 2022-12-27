@@ -1,29 +1,29 @@
-import { object, string } from "./2-parser";
+import {object, string} from './2-parser';
 
 const user = object({
 	user: object({
-        meta: object({
-            name: string(),
-        })
-    })
+		meta: object({
+			name: string(),
+		}),
+	}),
 });
 
 console.log(
 	user.parse({
 		user: {
-            meta: {
-                name: 'alistair',
-            }
-        }
+			meta: {
+				name: 'alistair',
+			},
+		},
 	}),
 );
 
 console.log(
 	user.parse({
 		user: {
-            meta: {
-                name: true,
-            }
-        }
+			meta: {
+				name: true,
+			},
+		},
 	}),
 );
