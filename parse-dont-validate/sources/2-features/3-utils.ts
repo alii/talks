@@ -20,7 +20,7 @@ export class MyZodError extends Error {
 	}
 }
 
-export function assert<T extends TypeOfs>(value: unknown, type: T, path: Path): asserts value is TypeOfsMap[T] {
+export function assertType<T extends TypeOfs>(value: unknown, type: T, path: Path): asserts value is TypeOfsMap[T] {
 	if (typeof value !== type) {
 		throw new MyZodError(value, type, path);
 	}

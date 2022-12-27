@@ -1,5 +1,5 @@
 import {ParseParams, defaultParseParams} from './1-params';
-import {Infer, assert, isKey} from './3-utils';
+import {Infer, assertType, isKey} from './3-utils';
 
 export interface Parser<Output> {
 	parse: (value: unknown, params?: ParseParams) => Output;
@@ -8,7 +8,7 @@ export interface Parser<Output> {
 export function string(): Parser<string> {
 	return {
 		parse: (value, params = defaultParseParams()) => {
-			assert(value, 'string', params.path);
+			assertType(value, 'string', params.path);
 			return value;
 		},
 	};
