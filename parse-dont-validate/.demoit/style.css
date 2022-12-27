@@ -1,0 +1,196 @@
+@import url("https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;800;900&display=swap");
+
+html,
+body,
+#top {
+	margin: 0;
+	padding: 0;
+	background-color: black;
+	font-size: 3vw;
+
+	--color-text: rgb(61, 64, 67);
+	--color-main: rgb(244, 66, 116);
+	--color-main-dark: rgb(131, 34, 61);
+
+	--font-family: "Hanken Grotesk", sans-serif;
+}
+
+html {
+	width: 100%;
+	height: 100%;
+}
+
+body {
+	font-family: var(--font-family);
+	color: var(--color-text);
+	display: flex;
+	align-items: center;
+	height: 100%;
+}
+
+#top {
+	position: relative;
+	background-color: rgb(27, 27, 27);
+	color: white;
+	width: 100%;
+	height: calc(100vw * 9 / 16);
+	overflow: hidden;
+	text-align: center;
+}
+
+h1 {
+	background: var(--color-main);
+	width: 50%;
+	height: 4vw;
+	padding: 2vw;
+	overflow: hidden;
+	white-space: nowrap;
+	text-align: left;
+	text-overflow: ellipsis;
+	border-radius: 0 50px 50px 0;
+	text-transform: none;
+	font-weight: normal;
+	font-size: 3vw;
+	color: white;
+	outline: 3px solid var(--color-main-dark);
+}
+
+h2,
+h3,
+h4,
+h5,
+h6 {
+	margin-top: 0;
+}
+
+h2 {
+	font-size: 5vw;
+}
+
+h3 {
+	font-size: 4vw;
+}
+
+h4 {
+	font-size: 2vw;
+}
+
+h2:first-of-type {
+	margin-top: 6vw;
+}
+
+ul {
+	text-align: left;
+	display: inline-block;
+	margin: 0;
+}
+
+.logos {
+	width: 100%;
+	height: calc(100% - 14vw);
+	text-align: center;
+}
+
+img {
+	height: 75%;
+}
+
+.logos img {
+	margin-top: 4vw;
+}
+
+a,
+a:visited {
+	color: var(--color-main);
+	text-decoration: none;
+}
+
+split-view {
+	height: 100%;
+	padding: 10px;
+}
+
+em {
+	font-style: normal;
+	color: var(--color-main);
+}
+
+#progression {
+	position: absolute;
+	height: 1px;
+	bottom: calc((100vh - (100vw * 9 / 16)) / 2);
+	left: 0;
+	background-color: var(--color-main);
+	border-radius: 0 3px 3px 0;
+	opacity: 0.4;
+}
+
+#qr {
+	position: absolute;
+	right: 1vw;
+	bottom: 1vw;
+	width: 15vw;
+	height: auto;
+}
+
+/* Speaker Notes window. */
+#speaker-notes {
+	display: table;
+	position: fixed;
+	width: 80%;
+	height: 80%;
+	top: 0;
+	left: 0;
+	z-index: 999;
+	background-color: #eeee;
+	margin: 10%;
+	border: 4px solid #ccc;
+	border-radius: 2rem;
+	padding: 2vw;
+	justify-content: center;
+	align-items: center;
+}
+
+#speaker-notes-contents {
+	display: table-cell;
+	vertical-align: middle;
+	line-height: normal;
+}
+
+#speaker-notes-progress {
+	position: fixed;
+	height: 3.5vw;
+	top: 1vw;
+	left: 1vw;
+	padding: 0.5vw;
+	background-color: #7cf;
+	font-size: 3vw;
+	font-weight: bold;
+	text-align: center;
+}
+
+#current-slide-title {
+	position: fixed;
+	height: 3.5vw;
+	top: 1vw;
+	left: 12vw;
+	padding: 0.5vw;
+	background-color: black;
+	color: #ddd;
+	font-size: 3vw;
+	font-weight: bold;
+	text-align: center;
+}
+
+.mermaid {
+	visibility: hidden;
+	max-height: 100%;
+}
+
+.mermaid[data-processed="true"] {
+	visibility: visible;
+}
+
+.mermaid text {
+	fill: white !important;
+}
