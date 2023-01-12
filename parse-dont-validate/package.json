@@ -2,6 +2,9 @@
 	"name": "parse-dont-validate",
 	"license": "MIT",
 	"devDependencies": {
-		"typescript": "^5.0.0-dev.20221226"
+		"typescript": "^5.0.0-dev.20230112"
+	},
+	"dependencies": {
+		"zod": "^3.20.2"
 	}
 }

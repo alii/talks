@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap');
 
 html,
 body,
@@ -9,10 +9,26 @@ body,
 	font-size: 3vw;
 
 	--color-text: rgb(61, 64, 67);
-	--color-main: rgb(244, 66, 116);
-	--color-main-dark: rgb(131, 34, 61);
+	--color-main: rgb(244, 66, 66);
+	--color-main-dark: rgb(177, 15, 15);
+	--color-on-main: rgb(101, 1, 1);
 
-	--font-family: 'Hanken Grotesk', sans-serif;
+	--font-family: 'Roboto', sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+li,
+pre,
+code {
+	margin: 0;
+	padding: 0;
 }
 
 html {
@@ -35,14 +51,16 @@ body {
 	width: 100%;
 	height: calc(100vw * 9 / 16);
 	overflow: hidden;
-	text-align: center;
+	box-sizing: border-box;
 }
 
 h1 {
 	background: var(--color-main);
-	width: 50%;
-	height: 4vw;
-	padding: 2vw;
+	min-width: 20%;
+	max-width: 50%;
+	box-sizing: border-box;
+	padding: 15px 20px;
+	color: var(--color-on-main);
 	overflow: hidden;
 	white-space: nowrap;
 	text-align: left;
@@ -51,8 +69,9 @@ h1 {
 	text-transform: none;
 	font-weight: normal;
 	font-size: 3vw;
-	color: white;
 	outline: 3px solid var(--color-main-dark);
+	margin-top: 2vw;
+	margin-bottom: 2vw;
 }
 
 h2,
@@ -117,12 +136,11 @@ em {
 
 #progression {
 	position: absolute;
-	height: 1px;
+	height: 5px;
 	bottom: calc((100vh - (100vw * 9 / 16)) / 2);
 	left: 0;
 	background-color: var(--color-main);
 	border-radius: 0 3px 3px 0;
-	opacity: 0.4;
 }
 
 #qr {

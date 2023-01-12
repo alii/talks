@@ -599,6 +599,25 @@ customElements.define(
 	},
 );
 
+customElements.define(
+	'padding-container',
+
+	class Container extends BaseHTMLElement {
+		static get styles() {
+			return `
+                :host {
+                    display: block;
+                    padding-left: 5vw;
+                }
+            `;
+		}
+
+		render() {
+			return `<slot />`;
+		}
+	},
+);
+
 // Diagrams
 import mermaid from 'https://unpkg.com/mermaid@9.2.2/dist/mermaid.esm.min.mjs';
 mermaid.initialize({startOnLoad: true});
