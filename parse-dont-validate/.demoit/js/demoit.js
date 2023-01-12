@@ -541,7 +541,7 @@ class VSCode extends BaseHTMLElement {
 		return `
             iframe {
                 width: 100%;
-                height: calc(100% + 1px);
+                height: 100%;
                 border: none;
             }
         `;
