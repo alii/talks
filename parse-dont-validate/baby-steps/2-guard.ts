@@ -1,5 +1,7 @@
 import {expect} from './utils';
 
+const expectNumber = expect<number>;
+
 export function isNumber(value: unknown): value is number {
 	return typeof value === 'number';
 }
@@ -7,7 +9,7 @@ export function isNumber(value: unknown): value is number {
 declare const something: unknown;
 
 if (isNumber(something)) {
-	expect<number>(something);
+	expectNumber(something);
 } else {
-	expect<number>(something);
+	expectNumber(something);
 }
