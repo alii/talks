@@ -1,6 +1,6 @@
 {
-	"name": "parse-dont-validate",
-	"license": "MIT",
+	"name": "why-zod",
+	"version": "1.0.0",
 	"devDependencies": {
 		"typescript": "^5.0.0-dev.20230112"
 	},
