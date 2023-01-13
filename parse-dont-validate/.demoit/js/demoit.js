@@ -72,8 +72,8 @@ class FakeWindow extends BaseHTMLElement {
 
             i {
                 display: inline-block;
-                width: 13px;
-                height: 13px;
+                width: 11px;
+                height: 11px;
                 border-radius: 13px;
                 margin: 0.4em 3px;
             }
