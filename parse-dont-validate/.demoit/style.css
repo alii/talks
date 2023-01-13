@@ -171,6 +171,7 @@ em {
 	display: table-cell;
 	vertical-align: middle;
 	line-height: normal;
+	font-size: 16px !important;
 }
 
 #speaker-notes-progress {
@@ -226,4 +227,8 @@ code::after {
 hr {
 	border: 0;
 	border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+img {
+	border-radius: 10px;
 }

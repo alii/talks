@@ -14,14 +14,14 @@ type StringDefinition = {
 	readonly max: number | undefined;
 };
 
-const string = (
-	def: StringDefinition = {
-		isEmail: false,
-		isURL: false,
-		min: 0,
-		max: undefined,
-	},
-): StringSchema => {
+const defaultStringDefinition: StringDefinition = {
+	isEmail: false,
+	isURL: false,
+	min: 0,
+	max: undefined,
+};
+
+const string = (def: StringDefinition = defaultStringDefinition): StringSchema => {
 	return {
 		parse: value => {
 			if (typeof value !== 'string') {
@@ -54,7 +54,3 @@ const string = (
 		},
 	};
 };
-
-const name = string().min(10).max(12);
-
-name.parse('aaaaaaaaaaaa');
