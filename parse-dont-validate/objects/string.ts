@@ -14,14 +14,14 @@ export type StringDefinition = {
 	readonly max: number | undefined;
 };
 
-export const defaultStringDefinition: StringDefinition = {
-	isEmail: false,
-	isURL: false,
-	min: 0,
-	max: undefined,
-};
-
-export const string = (def: StringDefinition = defaultStringDefinition): StringSchema => ({
+export const string = (
+	def: StringDefinition = {
+		isEmail: false,
+		isURL: false,
+		min: 0,
+		max: undefined,
+	},
+): StringSchema => ({
 	parse: value => {
 		if (typeof value !== 'string') {
 			throw new Error('Value is not a string');
@@ -51,11 +51,17 @@ export const string = (def: StringDefinition = defaultStringDefinition): StringS
 	},
 
 	email: () => {
+		// Check for invalid state
+		// There's probably a better solution for this
+		// at scale, but this is fine for the demo
 		if (def.isURL) {
 			throw new Error('Cannot be both email and URL');
 		}
 
-		return string({...def, isEmail: true});
+		return string({
+			...def,
+			isEmail: true,
+		});
 	},
 
 	url: () => {
@@ -63,7 +69,10 @@ export const string = (def: StringDefinition = defaultStringDefinition): StringS
 			throw new Error('Cannot be both email and URL');
 		}
 
-		return string({...def, isURL: true});
+		return string({
+			...def,
+			isURL: true,
+		});
 	},
 
 	min: (minimum: number) => {

@@ -2,9 +2,13 @@ export interface Schema<Out> {
 	parse(value: unknown): Out;
 }
 
-export type Infer<T> = T extends Schema<infer Out> ? Out : T;
+// TODO: Implement Infer<T> which will extract
+// the output of a schema.
 
-// TODO: Declare a schema, show the output works
+export type Infer<T> = any;
 
-declare const stringSchema: any;
-export type Output = any;
+// TODO: Demonstrate usage
+
+declare const myObscureSchema: Schema<1 | 'world' | string[]>;
+export type Output = Infer<typeof myObscureSchema>;
+//          ^?

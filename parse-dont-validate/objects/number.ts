@@ -9,20 +9,20 @@ export interface NumberSchema extends Schema<number> {
 }
 
 export type NumberDefinition = {
-	readonly positivity: 'positive' | 'negative' | 'any';
+	readonly positivity: 'positive' | 'negative' | undefined;
 	readonly isInteger: boolean;
 	readonly min: number | undefined;
 	readonly max: number | undefined;
 };
 
-export const defaultNumberDefinition: NumberDefinition = {
-	isInteger: false,
-	positivity: 'any',
-	min: undefined,
-	max: undefined,
-};
-
-export const number = (def: NumberDefinition = defaultNumberDefinition): NumberSchema => ({
+export const number = (
+	def: NumberDefinition = {
+		isInteger: false,
+		positivity: undefined,
+		min: undefined,
+		max: undefined,
+	},
+): NumberSchema => ({
 	parse: value => {
 		if (typeof value !== 'number') {
 			throw new Error('Value is not a number');

@@ -1,6 +1,6 @@
 <h1>Parse, don't validate</h1>
 
-<speaker-notes> explain what zod is, explain ill be talking about why you should use it, and then explain you'll be teaching everyone how to recreate it </speaker-notes>
+<speaker-notes>explain what zod is, explain ill be talking about why you should use it, and then explain you'll be teaching everyone how to recreate it</speaker-notes>
 
 ---
 
@@ -74,6 +74,8 @@
 	</ul>
 </padding-container>
 
+<speaker-notes>Defining schemas from primitives, then building up on top of that</speaker-notes>
+
 ---
 
 <vs-code path="baby-steps" />
@@ -94,14 +96,14 @@
 <padding-container>
 	<ul>
 		<li>All schemas implement <code>.parse(value: unknown): T</code></li>
-		<li>The most primitive parsers just assert type</li>
+		<li>Parsers are broken down to their smallest possible primitive and used to be built up</li>
 	</ul>
 
 	<h2>What's next?</h2>
 	<ul>
 		<li>Definitions</li>
-		<li>Objects</li>
 		<li>Infer</li>
+		<li>Objects</li>
 		<li><strike>Error handling</strike></li>
 	</ul>
 </padding-container>
@@ -143,6 +145,7 @@
 ---
 
 <h1>Definitions</h1>
+
 <padding-container>
 	<ul>
 		<li>Definitions allow us to write portable schemas</li>
@@ -164,6 +167,7 @@
 ---
 
 <h1>Objects</h1>
+
 <padding-container>
 	<p>We now have all the primtives we need to build more complex shapes. Now let's build an object.</p>
 </padding-container>
@@ -171,3 +175,26 @@
 ---
 
 <vs-code path="objects" />
+
+---
+
+<h1>Parse, don't validate</h1>
+
+<padding-container>
+	<p>What does it mean to parse not validate?</p>
+	<ul>
+		<li>Parsing is retaining types, doing transformations and returning the new shape</li>
+		<li>Validation is checking a shape is correct, but doesn't retain types and cannot perform transformations</li>
+	</ul>
+</padding-container>
+
+---
+
+<h1>Wrap up</h1>
+
+<padding-container>
+	<ul>
+		<li>Zod is built up of primitives</li>
+		<li>All parsers in Zod</li>
+	</ul>
+</padding-container>
