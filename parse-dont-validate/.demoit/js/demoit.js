@@ -28,14 +28,13 @@ class FakeWindow extends BaseHTMLElement {
                 font-size: 18px;
                 padding: 2.1em 0 0 0;
                 border-radius: 0.4em;
-                background: #ddd;
+                background: #24292e;
                 display: inline-block;
                 position: relative;
                 overflow: hidden;
                 box-shadow: 0 0.25em 0.9em -0.1em rgba(0,0,0,.2);
                 width: 100%;
                 height: calc(100% - 40px);
-                background-color: white;
                 transition: all 1s;
             }
 
@@ -47,9 +46,9 @@ class FakeWindow extends BaseHTMLElement {
                 top: 0;
                 padding: 0.3em;
                 width: 100%;
-                background: #ffffff;
-                color: #24292f;
-                border-bottom: 1px solid #d0d7de;
+                background: #24292e;
+                color: white;
+                border-bottom: 1px solid #1b1f23;
                 border-radius: 0.4em 0.4em 0 0;
             }
 
@@ -132,72 +131,73 @@ customElements.define('fake-window', FakeWindow);
 class SourceCode extends BaseHTMLElement {
 	static get styles() {
 		return `
-        #container {
-            height: calc(100% - 42px);
-            overflow-y: scroll;
-            overflow-x: auto;
-        }
+            #container {
+                height: calc(100% - 42px);
+                overflow-y: scroll;
+                overflow-x: auto;
+            }
 
-        .chroma {
-            text-align: left;
-            color: #212121;
-            padding: 0;
-            padding-bottom: 0px;
-            margin: 0;
-            font-size: var(--source-code-font-size, 16px);
-            font-family: 'Roboto Mono', monospace;
-        }
+            .chroma {
+                text-align: left;
+                color: #212121;
+                padding: 0;
+                padding-bottom: 0px;
+                margin: 0;
+                font-size: var(--source-code-font-size, 16px);
+                font-family: 'Roboto Mono', monospace;
+            }
 
-        pre.chroma {
-            tab-size: var(--source-code-tab-size, 4);
-        }
+            pre.chroma {
+                tab-size: var(--source-code-tab-size, 4);
+            }
 
-        .nt {
-            color: blue;
-        }
+            .nt {
+                color: blue;
+            }
 
-        #tabs {
-            background-color: rgb(243, 243, 243);
-            border-bottom: 1.5px solid rgb(236, 236, 236);
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            text-align: left;
-            height: 42px;
-        }
+            #tabs {
+                background-color: rgb(243, 243, 243);
+                border-bottom: 1.5px solid rgb(236, 236, 236);
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                text-align: left;
+                height: 42px;
+            }
 
-        #tabs a {
-            display: inline-block;
-            line-height: 42px;
-            padding: 0 15px 0 20px;
-            background: rgb(236, 236, 236);
-            text-decoration: none !important;
-            color: black;
-            font-size: 0.9em;
-            font-family: sans-serif;
-        }
+            #tabs a {
+                display: inline-block;
+                line-height: 42px;
+                padding: 0 15px 0 20px;
+                background: rgb(236, 236, 236);
+                text-decoration: none !important;
+                color: black;
+                font-size: 0.9em;
+                font-family: sans-serif;
+            }
 
-        #tabs a .close {
-            visibility: hidden;
-            margin-left: 10px;
-            font-weight: bold;
-        }
+            #tabs a .close {
+                visibility: hidden;
+                margin-left: 10px;
+                font-weight: bold;
+            }
 
-        #tabs a.selected .close {
-            visibility: visible;
-        }
+            #tabs a.selected .close {
+                visibility: visible;
+            }
 
-        #tabs a.selected {
-            background: white;
-        }
+            #tabs a.selected {
+                background: white;
+            }
 
-        #source {
-            --default-color-selection: rgb(191, 214, 255);
-        }
+            #source {
+                --default-color-selection: rgb(191, 214, 255);
+            }
 
-        .hl {
-            background-color: var(--color-selection, var(--default-color-selection)) !important;
-        }`;
+            .hl {
+                background-color: var(--color-selection, var(--default-color-selection)) !important;
+            }
+        `;
 	}
 
 	render() {
@@ -387,7 +387,7 @@ class WebTerm extends BaseHTMLElement {
                 width: calc(100% + 1px);
                 height: calc(100% + 1px);
                 border: none;
-                background-color: #000000;
+                background-color: black;
             }
         `;
 	}
@@ -607,7 +607,7 @@ customElements.define(
 			return `
                 :host {
                     display: block;
-                    padding-left: 5vw;
+                    padding: 0 5vw;
                 }
             `;
 		}

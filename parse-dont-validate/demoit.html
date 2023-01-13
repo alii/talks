@@ -61,16 +61,75 @@
 
 ---
 
-<vs-code path="baby-steps" />
+<h1>Making our own Zod</h1>
+
+<padding-container>
+	<ul>
+		<li>Define schemas</li>
+		<li>Parse data</li>
+	</ul>
+</padding-container>
 
 ---
 
-<editor-view path="baby-steps" />
+<vs-code path="baby-steps" />
 <speaker-notes>In 2.5 &amp; 3.5, mess up the values to prove that the parsing functions</speaker-notes>
 
 ---
 
-<split-view>
-	<web-term path="sources"></web-term>
-	<web-browser src="http://localhost:8000/"></web-browser>
-</split-view>
+<h1>Summary</h1>
+<padding-container>
+	<ul>
+		<li>All schemas implement <code>.parse(value: unknown): T</code></li>
+		<li>Parsers are broken down to their smallest possible primitive and used to be built up</li>
+	</ul>
+</padding-container>
+
+---
+
+<h1>Summary</h1>
+<padding-container>
+	<ul>
+		<li>All schemas implement <code>.parse(value: unknown): T</code></li>
+		<li>The most primitive parsers just assert type</li>
+	</ul>
+
+	<h2>What's next?</h2>
+	<ul>
+		<li>Definitions</li>
+		<li>Objects</li>
+		<li><strike>Error handling</strike></li>
+	</ul>
+</padding-container>
+
+<speaker-notes>Error handling is out of scope for the talk because it consists of paths and dirty, clean and invalid</speaker-notes>
+
+---
+
+<h1>Definitions</h1>
+
+<padding-container>
+	<p>Modifiying a <code>z.Schema</code> will actually clone it. To replicate this, we need a concept of definitions</p>
+</padding-container>
+
+---
+
+<h1>Definitions</h1>
+
+<padding-container>
+	<p>Modifiying a <code>z.Schema</code> will actually clone it. To replicate this, we need a concept of definitions</p>
+
+	<hr />
+
+	<p>In a string...</p>
+
+	<ul>
+		<li><code>isEmail: boolean = false</code></li>
+		<li><code>isUUID: boolean = false</code></li>
+		<li><code>min?: number</code></li>
+		<li><code>max?: number</code></li>
+		<li>Etc...</li>
+	</ul>
+</padding-container>
+
+---
