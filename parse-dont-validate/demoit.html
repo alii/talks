@@ -86,7 +86,7 @@
 <padding-container>
 	<ul>
 		<li>All schemas implement <code>.parse(value: unknown): T</code></li>
-		<li>Parsers are broken down to their smallest possible primitive and used to be built up</li>
+		<li>Schemas are broken down to their smallest possible primitive and used to be built up</li>
 	</ul>
 </padding-container>
 
@@ -96,7 +96,7 @@
 <padding-container>
 	<ul>
 		<li>All schemas implement <code>.parse(value: unknown): T</code></li>
-		<li>Parsers are broken down to their smallest possible primitive and used to be built up</li>
+		<li>Schemas are broken down to their smallest possible primitive and used to be built up</li>
 	</ul>
 
 	<h2>What's next?</h2>
@@ -195,6 +195,12 @@
 <padding-container>
 	<ul>
 		<li>Zod is built up of primitives</li>
-		<li>All parsers in Zod</li>
+		<li>Schemas contain definitions that allow them to be totally immutable, and copied when "mutating"</li>
+		<li>Parsing should retain as much data as possible and return it, rather than checking and returning a boolean</li>
+		<li>Implementing a standard <code>Schema&lt;T&gt;</code> allows schemas to be portable and quite literally generic</li>
 	</ul>
 </padding-container>
+
+---
+
+<h1>Questions?</h1>
