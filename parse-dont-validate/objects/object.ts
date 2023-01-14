@@ -1,4 +1,6 @@
+import { number } from './number';
 import {Infer, Schema} from './schema';
+import { string } from './string';
 
 export interface ObjectSchema<T> extends Schema<T> {}
 export type AnyObjectShape = Record<string, Schema<any>>;
@@ -32,3 +34,13 @@ export const object = <T extends AnyObjectShape>(
 		};
 	},
 });
+
+const user = object({
+	username: string().min(2),
+	age: number().min(18),
+});
+
+user.parse({
+	username: '',
+	age: 19,
+}).username;

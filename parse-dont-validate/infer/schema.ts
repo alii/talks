@@ -5,7 +5,7 @@ export interface Schema<Out> {
 // TODO: Implement Infer<T> which will extract
 // the output of a schema.
 
-export type Infer<T> = any;
+export type Infer<T> = T extends Schema<infer Out> ? Out : never;
 
 // TODO: Demonstrate usage
 
