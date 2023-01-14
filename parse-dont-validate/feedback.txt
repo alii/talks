@@ -1,0 +1,5 @@
+Feedback for presenting this on 13th of January for TypeScript London
+
+• Demo with Express or Fastify to give a demo in a relatable environment
+• Lead into recreating Zod less harshly, by explaining beforehand what will happen
+  and also explain at a high level what we'll be recreating
